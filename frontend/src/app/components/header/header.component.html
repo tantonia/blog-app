@@ -1,0 +1,10 @@
+<nav class="flex w-[50%] m-auto text-white bg-slate-700 px-10 py-6">
+  <h1>MY BLOG</h1>
+  @if (isAuthenticated) {
+  <p class="ml-auto mr-8 cursor-pointer">Create post</p>
+  <p class="cursor-pointer">Logout(zak)</p>
+  } @else {
+  <p class="ml-auto mr-8 cursor-pointer">Login</p>
+  <p class="cursor-pointer">Signup</p>
+  }
+</nav>
