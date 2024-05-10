@@ -1,1 +1,33 @@
-<p>create-post works!</p>
+<app-header></app-header>
+<form
+  class="w-[50%] h-screen flex flex-col m-auto items-center justify-center gap-3"
+  #createPost="ngForm"
+  (ngSubmit)="createForm()"
+>
+  <textarea
+    type="text"
+    name="title"
+    rows="5"
+    ngModel
+    class="custom-input w-[100%] px-3"
+    placeholder="type your title here..."
+  ></textarea>
+  <textarea
+    type="text"
+    name="content"
+    rows="10"
+    ngModel
+    class="custom-input w-[100%] px-3"
+    placeholder="type your content here..."
+  ></textarea>
+  <input
+    type="file"
+    name="file"
+    class="self-start"
+    ngModel
+    (change)="onFileSelected($event)"
+  />
+  <button type="submit" class="bg-purple-700 rounded-lg p-5 w-60 text-white">
+    Submit
+  </button>
+</form>

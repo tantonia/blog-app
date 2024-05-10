@@ -2,15 +2,15 @@ export const posts = [
   {
     id: 1,
     title:
-      'this is the first posts ajiejlkasjf fjaiejfakjdfiaejfak  aiefjadkfjaifj fa eifjajflajfie fjaiejfakejf f iejfajf jfkajfk fajkdjfiejf jfieajfdk iafeje',
-    desc: 'this is the description jfiejakdf jfiefja fldjfiejfa jfiaejfklsdj ifejaskdjf iejafdjfie ifeafjeijf fjiaefjak fijaiejfajf fiejafje fiajeijf',
+      'this is the first post ajiejlkasjf fjaiejfakjdfiaejfak',
+    desc: 'this is the description jfiejakdf jfiefja fldjfiejfa jfiaejfklsdj ifejaskdjf iejafdjfie ifeafjeijf fjiaefjak fijaiejfajf',
     date: '23-10-2023',
     img: 'assets/1.jpg',
     author: 'james',
   },
   {
     id: 2,
-    title: 'this is the second posts',
+    title: 'this is the second post',
     desc: 'this is the second description',
     date: '23-10-2023',
     img: 'assets/2.jpg',
@@ -18,7 +18,7 @@ export const posts = [
   },
   {
     id: 3,
-    title: 'this is the third posts',
+    title: 'this is the third post',
     desc: 'this is the third description',
     date: '23-10-2023',
     img: 'assets/3.jpg',
@@ -26,7 +26,7 @@ export const posts = [
   },
   {
     id: 4,
-    title: 'this is the fourth posts',
+    title: 'this is the fourth post',
     desc: 'this is the fourth description',
     date: '23-10-2023',
     img: 'assets/4.jpg',
@@ -34,7 +34,7 @@ export const posts = [
   },
   {
     id: 5,
-    title: 'this is the fifth posts',
+    title: 'this is the fifth post',
     desc: 'this is the fifth description',
     date: '23-10-2023',
     img: 'assets/5.jpg',
@@ -42,7 +42,7 @@ export const posts = [
   },
   {
     id: 6,
-    title: 'this is the sixth posts',
+    title: 'this is the sixth post',
     desc: 'this is the sixth description',
     date: '23-10-2023',
     img: 'assets/6.jpg',
@@ -50,7 +50,7 @@ export const posts = [
   },
   {
     id: 7,
-    title: 'this is the seventh posts',
+    title: 'this is the seventh post',
     desc: 'this is the seventh description',
     date: '23-10-2023',
     img: 'assets/7.jpg',
@@ -58,7 +58,7 @@ export const posts = [
   },
   {
     id: 8,
-    title: 'this is the eighth posts',
+    title: 'this is the eighth post',
     desc: 'this is the eighth description',
     date: '23-10-2023',
     img: 'assets/8.jpg',
@@ -66,7 +66,7 @@ export const posts = [
   },
   {
     id: 9,
-    title: 'this is the ninth posts',
+    title: 'this is the ninth post',
     desc: 'this is the ninth description',
     date: '23-10-2023',
     img: 'assets/9.jpg',
@@ -74,7 +74,7 @@ export const posts = [
   },
   {
     id: 10,
-    title: 'this is the tenth posts',
+    title: 'this is the tenth post',
     desc: 'this is the tenth description',
     date: '23-10-2023',
     img: 'assets/10.jpg',

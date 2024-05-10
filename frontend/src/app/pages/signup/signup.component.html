@@ -1,1 +1,24 @@
-<p>signup works!</p>
+<app-header />
+<form
+  class="h-screen w-screen flex flex-col justify-center items-center gap-3"
+  #signup="ngForm"
+  (ngSubmit)="checkSignup()"
+>
+  <input
+    type="text"
+    name="username"
+    placeholder="username"
+    class="custom-input p-5 w-68"
+    ngModel
+  />
+  <input
+    type="password"
+    name="password"
+    placeholder="password"
+    class="custom-input p-5 w-68"
+    ngModel
+  />
+  <button type="submit" class="bg-purple-700 rounded-lg p-5 w-60 text-white">
+    Submit
+  </button>
+</form>
