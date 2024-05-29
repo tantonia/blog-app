@@ -7,6 +7,9 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import authRouter from './routes/auth.route.js';
+import { postRouter, postRouterUpload } from './routes/post.route.js';
+
 dotenv.config();
 const app = express();
 app.use(cookieParser());
@@ -23,6 +26,8 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cd(null, path.join(__dirname, 'public'))
@@ -40,6 +45,11 @@ mongoose
     .then(() => { console.log('connected to MongoDB!');
     })
     .catch((err) => console.log(err));
+
+app.use('/api/auth', authRouter);
+app.use('/api/post', postRouter);
+app.use('/api/post/upload', upload.single('file'), postRouterUpload);
+app.use('/uploads', express.static(path.join(__dirname, 'public')))
 app.use('/', async(req,res) => {
     try {
         res.json('hello from server')
