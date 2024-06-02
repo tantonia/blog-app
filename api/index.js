@@ -30,7 +30,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cd(null, path.join(__dirname, 'public'))
+        cb(null, path.join(__dirname, 'public'))
     }, filename: (req, file, cb) => {
         cb(null, Date.now() +path.extname(file.originalname));
     }

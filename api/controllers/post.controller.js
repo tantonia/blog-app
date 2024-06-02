@@ -53,28 +53,39 @@ export const getSinglePost = async(req, res) => {
     }
 };
 
-export const updatePost = async(req, res) => {
+export const updatePost = async (req, res) => {
     try {
-        const {id} = req.params;
-        const {title, summary, content} = req.body;
-        const author = await User.findById(req.user.id);
-        const post = await Post.findById(id);
-        if(!post) {
-            throw errorHandler(404, 'post not found!');
-        }
-        const updateObject = {
-            title: title,
-            summary: summary,
-            content: content,
-            cover: req.file ? req.file.filename : Post.cover
-        };
-        const updatedPost = await Post.findByIdAndUpdate(id, updateObject,{new:true, runValidators:true});
-        if(!updatePost) {
-            throw errorHandler(404, 'post not found');
-        }
-        res.status(200).json(updatePost);
-    } catch(error) {
-        console.error(error.message || 'internal server error');
-        res.status(error.statusCode || 500).json(error.message || 'internal server error')
+      const { id } = req.params;
+      const { title, summary, content } = req.body;
+      const author = await User.findById(req.user.id);
+      const post = await Post.findById(id);
+      if (!post) {
+        throw errorHandler(404, "post not found");
+      }
+      if (author && post.author.id !== author.id) {
+        throw errorHandler(400, "you can only edit your post");
+      }
+  
+      const updateObject = {
+        title: title,
+        summary: summary,
+        content: content,
+        cover: req.file ? req.file.filename : Post.cover,
+      };
+  
+      const updatedPost = await Post.findByIdAndUpdate(id, updateObject, {
+        new: true,
+        runValidators: true,
+      });
+  
+      if (!updatedPost) {
+        throw errorHandler(404, "post not found");
+      }
+      res.status(200).json(updatedPost);
+    } catch (error) {
+      console.error(error.message || "internal server error");
+      res
+        .status(error.statusCode || 500)
+        .json(error.message || "internal server error");
     }
-};
+  };
