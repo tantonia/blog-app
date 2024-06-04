@@ -5,7 +5,7 @@ import express from 'express';
 const authRouter = express.Router();
 authRouter.post('/signup', signup);
 authRouter.post('/signin', signin);
-authRouter.get('/signout', signOut);
+authRouter.get('/signout', signout);
 authRouter.get('/check', verifyToken, checkRoute);
 
 export default authRouter;

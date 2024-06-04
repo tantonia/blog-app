@@ -1,18 +1,24 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { FormsModule, NgForm } from '@angular/forms';
+import { AuthService } from '../../auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HeaderComponent, FormsModule],
+  imports: [HeaderComponent, FormsModule, RouterLink],
   templateUrl: './login.component.html',
   styles: ``
 })
 export class LoginComponent {
+  auth = inject(AuthService);
   @ViewChild('login') login!: NgForm;
   checkLogin(){
-    console.log(this.login.value);
+    this.auth.loginAuth(this.login.value);
     this.login.reset();    
+  }
+  signout() {
+    this.auth.signOut();
   }
 }

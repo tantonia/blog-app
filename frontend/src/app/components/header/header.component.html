@@ -1,10 +1,12 @@
 <nav class="flex w-[50%] m-auto text-white bg-purple-800 px-10 py-6">
-  <h1>MY BLOG</h1>
-  @if (isAuthenticated) {
-  <p class="ml-auto mr-8 cursor-pointer">Create post</p>
-  <p class="cursor-pointer">Logout(zak)</p>
+  <h1 class="font-bold cursor-pointer" [routerLink]="['/']">MY BLOG</h1>
+  @if (auth.isAuthenticated) {
+  <p class="ml-auto mr-8 cursor-pointer" [routerLink]="['/create-post']">
+    Create post
+  </p>
+  <p (click)="logOut()" class="cursor-pointer">Logout({{ auth.username }})</p>
   } @else {
-  <p class="ml-auto mr-8 cursor-pointer">Login</p>
-  <p class="cursor-pointer">Signup</p>
+  <p class="ml-auto mr-8 cursor-pointer" [routerLink]="['/login']">Login</p>
+  <p class="cursor-pointer" [routerLink]="['/signup']">Signup</p>
   }
 </nav>

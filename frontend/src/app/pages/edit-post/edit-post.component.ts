@@ -1,24 +1,49 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { HeaderComponent } from '../../components/header/header.component';
+import { RouterLink, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../auth.service';
+import { PostService } from '../../post.service';
 
 @Component({
   selector: 'app-edit-post',
   standalone: true,
-  imports: [FormsModule, HeaderComponent],
+  imports: [FormsModule, HeaderComponent, RouterLink],
   templateUrl: './edit-post.component.html',
-  styles: ``
 })
-export class EditPostComponent {
-  selectedFile! : File;
+export class EditPostComponent implements OnInit{
+  auth = inject(AuthService);
+  post = inject(PostService);
+  route = inject(ActivatedRoute);
+  
   @ViewChild('editPost') editPost! : NgForm;
-  onFileSelected(event:any) {
-    this.selectedFile = event.target.files(0);
-    console.log(this.selectedFile);
+  selectedFile! : File;
+  postId: any;
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile.name);
+  }
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const postId = params.get('id');
+      this.postId = postId;
+      console.log(postId);
+      this.post.getSinglePost(postId).subscribe({
+        next: (value) => {
+          this.post.singlePost = value;
+          console.log(this.post.singlePost);
+        },
+        error: (error) => console.log(error),        
+      });
+    });
   }
   
   editForm() {
-    console.log(this.editPost.value);
+    const formData = new FormData();
+    formData.append('title', this.editPost.value.title);
+    formData.append('content', this.editPost.value.content);
+    formData.append('file', this.selectedFile);
+    this.post.editPost(this.postId, formData);
     this.editPost.reset();    
   }
 }

@@ -1,4 +1,5 @@
 <app-header></app-header>
+@if (post.singlePost) {
 <form
   class="w-[50%] h-screen flex flex-col m-auto items-center justify-center gap-3"
   #editPost="ngForm"
@@ -8,17 +9,19 @@
     type="text"
     name="title"
     rows="5"
-    ngModel
+    [ngModel]="post.singlePost.title"
     class="custom-input w-[100%] px-3"
     placeholder="type your title here..."
+    required
   ></textarea>
   <textarea
     type="text"
     name="content"
     rows="10"
-    ngModel
+    [ngModel]="post.singlePost.content"
     class="custom-input w-[100%] px-3"
     placeholder="type your content here..."
+    required
   ></textarea>
   <input
     type="file"
@@ -26,8 +29,10 @@
     class="self-start"
     ngModel
     (change)="onFileSelected($event)"
+    #fileInput
   />
   <button type="submit" class="bg-purple-700 rounded-lg p-5 w-60 text-white">
     Submit
   </button>
 </form>
+}

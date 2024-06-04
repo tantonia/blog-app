@@ -1,14 +1,15 @@
 <app-header></app-header>
 <div class="flex flex-col w-[50%] m-auto mt-6 gap-6 items-start">
   <div class="font-bold">{{ postDetails.title }}</div>
-  <div class="font-bold">{{ postDetails.author }}</div>
-  @if (isAuthor) {
+  <div>{{ postDetails.createdAt | date : "medium" }}</div>
+  <div class="font-bold">{{ postDetails.author.username }}</div>
+  @if (auth.username === postDetails.author.username) {
   <button class="bg-purple-800 text-white px-3 py-3 self-center rounded-md">
     Edit post
   </button>
   }
   <div class="w-full m-auto relative h-96">
-    <img [ngSrc]="postDetails.img" fill alt="post" />
+    <img [ngSrc]="post.imgBaseUrl + postDetails.cover" fill alt="post" />
   </div>
-  <div>{{ postDetails.desc }}</div>
+  <div>{{ postDetails.content }}</div>
 </div>

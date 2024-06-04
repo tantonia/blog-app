@@ -13,6 +13,8 @@ export class AuthService {
   router = inject(Router);
   http = inject(HttpClient);
   baseUrl = environment.domain;
+  isAuthenticated: any;
+  username: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: any) {}
 

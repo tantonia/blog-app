@@ -2,8 +2,8 @@ export const posts = [
   {
     id: 1,
     title:
-      'this is the first post ajiejlkasjf fjaiejfakjdfiaejfak',
-    desc: 'this is the description jfiejakdf jfiefja fldjfiejfa jfiaejfklsdj ifejaskdjf iejafdjfie ifeafjeijf fjiaefjak fijaiejfajf',
+      'this is the first post',
+    desc: 'this is the description number one',
     date: '23-10-2023',
     img: 'assets/1.jpg',
     author: 'james',

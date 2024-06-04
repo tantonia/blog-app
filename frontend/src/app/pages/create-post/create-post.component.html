@@ -1,8 +1,8 @@
 <app-header></app-header>
 <form
   class="w-[50%] h-screen flex flex-col m-auto items-center justify-center gap-3"
-  #createPost="ngForm"
   (ngSubmit)="createForm()"
+  #createPost="ngForm"
 >
   <textarea
     type="text"
@@ -11,6 +11,7 @@
     ngModel
     class="custom-input w-[100%] px-3"
     placeholder="type your title here..."
+    required
   ></textarea>
   <textarea
     type="text"
@@ -19,15 +20,21 @@
     ngModel
     class="custom-input w-[100%] px-3"
     placeholder="type your content here..."
+    required
   ></textarea>
   <input
     type="file"
     name="file"
     class="self-start"
     ngModel
+    required
     (change)="onFileSelected($event)"
   />
-  <button type="submit" class="bg-purple-700 rounded-lg p-5 w-60 text-white">
+  <button
+    type="submit"
+    class="bg-purple-700 rounded-lg p-5 w-60 text-white"
+    [disabled]="createPost.invalid"
+  >
     Submit
   </button>
 </form>
