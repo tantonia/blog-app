@@ -8,7 +8,6 @@ export const createPost = async(req, res) => {
         const author = await User.findById(req.user.id);
         if(!title || !content) {
             throw errorHandler(404, 'no title or content found!');
-
         }
         if(!author) {
             throw errorHandler(404, 'author not found!');
@@ -62,7 +61,7 @@ export const updatePost = async (req, res) => {
       if (!post) {
         throw errorHandler(404, "post not found");
       }
-      if (author && post.author.id !== author.id) {
+      if (author && post.author != author.id) {
         throw errorHandler(400, "you can only edit your post");
       }
   

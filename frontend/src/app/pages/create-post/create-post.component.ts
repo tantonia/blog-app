@@ -26,7 +26,6 @@ export class CreatePostComponent {
 
     console.log(this.create.value);
     this.post.createPost(formData);
-
     this.create.reset();
   }
 }

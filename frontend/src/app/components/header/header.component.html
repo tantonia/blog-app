@@ -1,12 +1,41 @@
-<nav class="flex w-[50%] m-auto text-white bg-purple-800 px-10 py-6">
-  <h1 class="font-bold cursor-pointer" [routerLink]="['/']">MY BLOG</h1>
-  @if (auth.isAuthenticated) {
-  <p class="ml-auto mr-8 cursor-pointer" [routerLink]="['/create-post']">
-    Create post
-  </p>
-  <p (click)="logOut()" class="cursor-pointer">Logout({{ auth.username }})</p>
-  } @else {
-  <p class="ml-auto mr-8 cursor-pointer" [routerLink]="['/login']">Login</p>
-  <p class="cursor-pointer" [routerLink]="['/signup']">Signup</p>
-  }
+<nav class="flex w-[50%] m-auto text-white bg-purple-800">
+  <h1 class="font-bold cursor-pointer py-8 px-10" [routerLink]="['/']">
+    MY BLOG
+  </h1>
+  <div class="flex ml-auto">
+    <p
+      *ngIf="auth.isAuthenticated; else notAuthenticated"
+      class="cursor-pointer py-8 px-10"
+      [routerLink]="['/create-post']"
+      [class.bg-gray-200]="router.url === '/create-post'"
+      [class.bg-purple-800]="router.url !== '/create-post'"
+    >
+      Create post
+    </p>
+    <p
+      *ngIf="auth.isAuthenticated"
+      (click)="logOut()"
+      class="cursor-pointer py-8 px-10"
+    >
+      Logout({{ auth.username }})
+    </p>
+  </div>
+  <ng-template #notAuthenticated>
+    <p
+      class="cursor-pointer py-8 px-10"
+      [routerLink]="['/login']"
+      [class.bg-gray-200]="router.url === '/login'"
+      [class.bg-purple-800]="router.url !== '/login'"
+    >
+      Login
+    </p>
+    <p
+      class="cursor-pointer py-8 px-10"
+      [routerLink]="['/signup']"
+      [class.bg-gray-200]="router.url === '/signup'"
+      [class.bg-purple-800]="router.url !== '/signup'"
+    >
+      Signup
+    </p>
+  </ng-template>
 </nav>

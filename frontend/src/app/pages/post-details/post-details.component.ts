@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HeaderComponent } from '../../components/header/header.component';
 import { PostService } from '../../post.service';
 import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-details',
@@ -17,9 +18,9 @@ export class PostDetailsComponent implements OnInit {
   route = inject(ActivatedRoute);
   postId: any;
   postDetails: any;
-  isAuthor = false;
-  
+  constructor(private router: Router) {}
   ngOnInit(): void {
+    console.log('auth:',this.auth);
     this.route.paramMap.subscribe((params) => {
       const postId = params.get('id');
       this.post.getSinglePost(postId).subscribe({
@@ -27,8 +28,14 @@ export class PostDetailsComponent implements OnInit {
           console.log(value);
           this.postDetails = value;
         },
-        error: error => console.log(error),          
+        error: error => console.log(error),
       });
     });
+  }
+
+  navigateToEdit() {
+    console.log(this.postDetails._id);
+    const postId = this.postDetails._id;
+    this.router.navigate(['/edit-post', postId]);
   }
 }

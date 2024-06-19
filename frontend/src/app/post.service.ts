@@ -17,26 +17,37 @@ export class PostService {
   allPosts: any;
 
   constructor() {}
-  
+
+  createPost(formData: any) {
+    return this.http
+      .post(this.baseUrl + '/api/post/upload/create', formData, {
+        withCredentials: true,
+      })
+      .subscribe({
+        next: (value) => {
+          console.log(value);
+          this.router.navigate(['/']);
+        },
+        error: (error) => console.log(error),
+      });
+  }
   getAllPosts() {
-    return this.http.get(this.baseUrl+'/api/post');
+    return this.http.get(this.baseUrl + '/api/post');
   }
-
-  createPost(formData:any) {
-    return this.http.post(this.baseUrl+'/api/post/upload/create', formData, {withCredentials: true,
-    });
+  getSinglePost(id: any) {
+    return this.http.get(this.baseUrl + '/api/post/' + id);
   }
-
-  getSinglePost(id:any) {
-    return this.http.get(this.baseUrl+'/api/post/'+id);
-  }
-
-  editPost(id:any, updatedPost:FormData) {
-    return this.http.patch(this.baseUrl+'/api/post/upload/update'+id, updatedPost, { withCredentials: true }).subscribe({next:value => {console.log(value); this.router.navigate(['/']);
-    },
-    error:error => {
-      console.log(error);
-    },
-    });
+  editPost(id: any, updatedPost: FormData) {
+    return this.http
+      .patch(this.baseUrl + '/api/post/upload/update/' + id, updatedPost, {
+        withCredentials: true,
+      })
+      .subscribe({
+        next: (value) => {
+          console.log(value);
+          this.router.navigate(['/']);
+        },
+        error: (error) => console.log(error),
+      });
   }
 }

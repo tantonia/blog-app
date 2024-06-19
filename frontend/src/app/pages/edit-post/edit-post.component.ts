@@ -15,7 +15,7 @@ export class EditPostComponent implements OnInit{
   auth = inject(AuthService);
   post = inject(PostService);
   route = inject(ActivatedRoute);
-  
+
   @ViewChild('editPost') editPost! : NgForm;
   selectedFile! : File;
   postId: any;
@@ -27,23 +27,22 @@ export class EditPostComponent implements OnInit{
     this.route.paramMap.subscribe((params) => {
       const postId = params.get('id');
       this.postId = postId;
-      console.log(postId);
       this.post.getSinglePost(postId).subscribe({
         next: (value) => {
           this.post.singlePost = value;
           console.log(this.post.singlePost);
         },
-        error: (error) => console.log(error),        
+        error: (error) => console.log(error),
       });
     });
   }
-  
+
   editForm() {
     const formData = new FormData();
     formData.append('title', this.editPost.value.title);
     formData.append('content', this.editPost.value.content);
     formData.append('file', this.selectedFile);
     this.post.editPost(this.postId, formData);
-    this.editPost.reset();    
+    this.editPost.reset();
   }
 }
