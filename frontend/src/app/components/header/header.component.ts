@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.auth.checkAuth().subscribe({
       next: value => {
-        console.log(value);
         this.auth.isAuthenticated = Object.values(value)[0];
         if (isPlatformBrowser(this.platformId)) {
           this.auth.username = Object.values(

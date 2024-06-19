@@ -12,7 +12,7 @@ import { PostService } from '../../post.service';
 export class CreatePostComponent {
   post = inject(PostService)
   selectedFile! : File;
-  
+
   @ViewChild('createPost') create! : NgForm;
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -27,6 +27,6 @@ export class CreatePostComponent {
     console.log(this.create.value);
     this.post.createPost(formData);
 
-    this.create.reset();    
+    this.create.reset();
   }
 }

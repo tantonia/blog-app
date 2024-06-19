@@ -1,15 +1,28 @@
 <app-header></app-header>
-<div class="flex flex-col w-[50%] m-auto mt-6 gap-6 items-start">
-  <div class="font-bold">{{ postDetails.title }}</div>
-  <div>{{ postDetails.createdAt | date : "medium" }}</div>
-  <div class="font-bold">{{ postDetails.author.username }}</div>
-  @if (auth.username === postDetails.author.username) {
-  <button class="bg-purple-800 text-white px-3 py-3 self-center rounded-md">
-    Edit post
-  </button>
-  }
-  <div class="w-full m-auto relative h-96">
-    <img [ngSrc]="post.imgBaseUrl + postDetails.cover" fill alt="post" />
+<div class="pb-16"></div>
+<div
+  class="max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-lg rounded-lg overflow-hidden p-6"
+>
+  <div class="flex flex-col m-auto mt-6 gap-6 items-start">
+    <div class="font-bold text-xl">{{ postDetails.title }}</div>
+    <div>Created At: {{ postDetails.createdAt | date : "medium" }}</div>
+    <div class="font-bold">
+      <span class="font-normal">Author:</span> {{ postDetails.author.username }}
+    </div>
+    <!-- Conditionally render the edit button if the user is the author -->
+    <!-- Uncomment the following line and include the authentication logic to make it functional -->
+    <!-- <div *ngIf="auth.username === postDetails.author.username"> -->
+    <button class="bg-purple-800 text-white px-3 py-3 self-center rounded-md">
+      Edit post
+    </button>
+    <!-- </div> -->
+    <div class="w-full m-auto relative h-96">
+      <img
+        [src]="post.imgBaseUrl + postDetails.cover"
+        alt="post"
+        class="w-full h-full object-cover rounded-md"
+      />
+    </div>
+    <div>{{ postDetails.content }}</div>
   </div>
-  <div>{{ postDetails.content }}</div>
 </div>

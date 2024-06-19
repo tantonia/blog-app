@@ -28,7 +28,7 @@ export class AuthService {
     .subscribe({
       next:value => {
         console.log(value);
-        this.router.navigate(['/login']);
+        this.router.navigate(['./login']);
       },
       error:error => console.log(error),
     });
@@ -45,14 +45,15 @@ export class AuthService {
         if (isPlatformBrowser(this.platformId)) {
          localStorage.setItem('username', JSON.stringify(value));
         }
+        this.router.navigate(['/']);
       },
       error:error => console.log(error),
-      
+
     });
   }
 
   signOut() {
-    return this.http.get(this.baseUrl+'/api/auth/signout', { 
+    return this.http.get(this.baseUrl+'/api/auth/signout', {
       withCredentials: true,
     })
     .subscribe({

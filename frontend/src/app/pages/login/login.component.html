@@ -1,26 +1,35 @@
 <app-header />
-<form
-  class="h-screen w-screen flex flex-col justify-center items-center gap-3"
-  #login="ngForm"
-  (ngSubmit)="checkLogin()"
+<div class="pb-16"></div>
+<div
+  class="max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-lg rounded-lg overflow-hidden p-6"
 >
-  <input
-    type="text"
-    name="username"
-    required
-    placeholder="username"
-    class="custom-input p-5 w-68"
-    ngModel
-  />
-  <input
-    type="password"
-    name="password"
-    required
-    placeholder="password"
-    class="custom-input p-5 w-68"
-    ngModel
-  />
-  <button type="submit" class="bg-purple-700 rounded-lg p-5 w-60 text-white">
-    Submit
-  </button>
-</form>
+  <form
+    class="flex flex-col justify-center items-center gap-3"
+    #login="ngForm"
+    (ngSubmit)="checkLogin()"
+  >
+    <input
+      type="text"
+      name="username"
+      required
+      placeholder="Username"
+      class="custom-input p-5 w-full"
+      ngModel
+    />
+    <input
+      type="password"
+      name="password"
+      required
+      placeholder="Password"
+      class="custom-input p-5 w-full"
+      ngModel
+    />
+    <button
+      type="submit"
+      class="bg-purple-700 disabled:bg-purple-500 rounded-lg p-5 w-full text-white"
+      [disabled]="login.invalid"
+    >
+      Login
+    </button>
+  </form>
+</div>

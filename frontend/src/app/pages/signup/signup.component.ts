@@ -15,7 +15,10 @@ export class SignupComponent {
   auth = inject(AuthService)
   @ViewChild('signup') signup! : NgForm;
   checkSignup(){
+    if (this.signup.valid) {
+      console.log('Signup form submitted', this.signup.value);
+    }
     this.auth.signUpAuth(this.signup.value);
-    this.signup.reset();    
+    this.signup.reset();
   }
 }

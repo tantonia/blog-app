@@ -3,25 +3,40 @@ import User from '../models/User.model.js';
 import { errorHandler } from '../utils/error.js';
 import jwt from "jsonwebtoken";
 
+const ValidData = (username, password) => {
+    if(username === null || password.length < 5) {
+        return false;
+    }
+    return true;
+}
+
 export const signup = async(req, res) => {
     const {username, password} = req.body;
+    if(!ValidData(username, password)) {
+        res.status(401).json( 'No null plz');
+        return;
+    }
     const hashedPassword = bcryptjs.hashSync(password, 10);
     const newUser = new User({username, password: hashedPassword});
     try {
         const existingUser = await User.findOne({username});
+        console.log(existingUser);
         if (existingUser){
             throw errorHandler(409, 'user already exists');
         }
         await newUser.save();
         res.status(201).json('user created successfully');
-    } catch {
-        console.error(error.message);
+    } catch(error) {
         res.status(error.statusCode).json(error.message);
     }
 };
 
 export const signin = async (req, res) => {
     const {username, password} = req.body;
+    if(!ValidData(username, password)) {
+        res.status(401).json( 'No null plz');
+        return;
+    }
     try {
         const validUser = await User.findOne({username});
         if(!validUser) {
