@@ -2,8 +2,6 @@ import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { CreatePostComponent } from './pages/create-post/create-post.component';
-import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +47,11 @@ export class PostService {
         },
         error: (error) => console.log(error),
       });
+  }
+
+  deletePost(id: any) {
+    return this.http.delete(this.baseUrl + '/api/post/upload/delete/' + id, {
+      withCredentials: true,
+    });
   }
 }

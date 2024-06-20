@@ -7,21 +7,28 @@
     [routerLink]="['/post-details', post._id]"
   >
     <li
-      class="h-48 w-full flex flex-row items-center space-x-4 p-4 bg-white shadow-md rounded-lg"
+      class="h-52 w-full flex flex-row items-center space-x-4 p-4 bg-white shadow-md rounded-lg"
     >
       <img
         [src]="posts.imgBaseUrl + post.cover"
         alt="post image"
-        class="h-32 w-32 object-cover rounded"
+        class="h-32 w-32 object-cover rounded hidden sm:block"
       />
-      <div class="flex flex-col justify-between h-full">
-        <div class="font-extrabold text-xl truncate w-48">
-          {{ post.title | slice : 0 : 50 }}...
+      <div class="flex flex-col justify-between h-full text-wrap w-[70%]">
+        <div class="font-extrabold text-xl truncate">
+          {{ post.title | slice : 0 : 50 }}
         </div>
-        <div class="flex-grow text-sm truncate w-48">
-          {{ post.content | slice : 0 : 200 }}...
+        <div
+          class="text-base overflow-hidden"
+          style="
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+          "
+        >
+          {{ post.content | slice : 0 : 500 }}
         </div>
-        <div class="font-bold text-sm">
+        <div class="font-bold text-sm mt-3">
           {{ post.author.username }}
         </div>
         <div class="text-sm text-gray-500">
@@ -31,4 +38,12 @@
     </li>
   </ul>
   }
+  <footer class="mt-8 text-center text-gray-500 text-sm mb-3">
+    <ul class="list-none flex justify-between">
+      <li>&copy; 2024 | Antonia Tsatsouli</li>
+      <li>
+        <a href="https://www.linkedin.com/in/antoniatsatsouli/">LinkedIn</a>
+      </li>
+    </ul>
+  </footer>
 </div>

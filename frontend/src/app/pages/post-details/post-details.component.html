@@ -4,25 +4,35 @@
   class="max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-lg rounded-lg overflow-hidden p-6"
 >
   <div class="flex flex-col m-auto mt-6 gap-6 items-start">
-    <div class="font-bold text-xl">{{ postDetails.title }}</div>
-    <div>Created At: {{ postDetails.createdAt | date : "medium" }}</div>
+    <div class="font-bold text-xl">{{ postDetails?.title }}</div>
+    <div>Created At: {{ postDetails?.createdAt | date : "medium" }}</div>
     <div class="font-bold">
-      <span class="font-normal">Author:</span> {{ postDetails.author.username }}
+      <span class="font-normal">Author:</span>
+      {{ postDetails?.author?.username }}
     </div>
-    <button
-      class="bg-purple-800 disabled:bg-purple-500 text-white px-3 py-3 self-center rounded-md"
-      [disabled]="auth.username != postDetails.author.username"
-      (click)="navigateToEdit()"
-    >
-      Edit post
-    </button>
+    <div class="flex self-center">
+      <button
+        class="bg-purple-800 disabled:bg-purple-500 text-white px-3 py-3 self-center rounded-md mr-4"
+        [disabled]="auth.username != postDetails?.author?.username"
+        (click)="navigateToEdit()"
+      >
+        Edit post
+      </button>
+      <button
+        class="bg-purple-800 disabled:bg-purple-500 text-white px-3 py-3 self-center rounded-md"
+        [disabled]="auth.username != postDetails?.author?.username"
+        (click)="deletePost()"
+      >
+        Delete post
+      </button>
+    </div>
     <div class="w-full m-auto relative h-96">
       <img
-        [src]="post.imgBaseUrl + postDetails.cover"
+        [src]="post.imgBaseUrl + postDetails?.cover"
         alt="post"
         class="w-full h-full object-cover rounded-md"
       />
     </div>
-    <div>{{ postDetails.content }}</div>
+    <div>{{ postDetails?.content }}</div>
   </div>
 </div>

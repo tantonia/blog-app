@@ -88,3 +88,22 @@ export const updatePost = async (req, res) => {
         .json(error.message || "internal server error");
     }
   };
+
+  export const deletePost = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const author = await User.findById(req.user.id);
+      const post = await Post.findById(id);
+      if (!post) {
+        throw errorHandler(404, "post not found");
+      }
+      if (author && post.author != author.id) {
+        throw errorHandler(400, "you can only delete your post");
+      }
+      await post.deleteOne();
+      res.status(204).send();
+    } catch (error) {
+      console.error(error.message || "Internal server error");
+      res.status(error.statusCode || 500).json(error.message || "Internal server error");
+    }
+  };
