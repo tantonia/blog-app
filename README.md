@@ -27,5 +27,3 @@ or
 ```shell
 ng serve
 ```
-
-#### 3) Ask me for approval to send you the `.env` file via email if not already sent and add to `frontend` folder.
