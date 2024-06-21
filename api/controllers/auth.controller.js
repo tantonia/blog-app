@@ -10,24 +10,24 @@ const ValidData = (username, password) => {
     return true;
 }
 
-export const signup = async(req, res) => {
-    const {username, password} = req.body;
-    if(!ValidData(username, password)) {
-        res.status(401).json( 'No null plz');
+export const signup = async (req, res) => {
+    const { username, password } = req.body;
+    if (!ValidData(username, password)) {
+        res.status(401).json('No null plz');
         return;
     }
     const hashedPassword = bcryptjs.hashSync(password, 10);
-    const newUser = new User({username, password: hashedPassword});
+    const newUser = new User({ username, password: hashedPassword });
     try {
-        const existingUser = await User.findOne({username});
-        console.log(existingUser);
-        if (existingUser){
-            throw errorHandler(409, 'user already exists');
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            res.status(409).json('user already exists');
+            return;
         }
         await newUser.save();
         res.status(201).json('user created successfully');
-    } catch(error) {
-        res.status(error.statusCode).json(error.message);
+    } catch (error) {
+        res.status(500).json('Something went wrong');
     }
 };
 

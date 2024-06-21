@@ -1,11 +1,14 @@
-<nav class="flex w-[60%] m-auto text-white bg-purple-800">
-  <h1 class="font-bold cursor-pointer py-8 px-10" [routerLink]="['/']">
-    MY BLOG
+<nav class="block md:flex w-[60%] m-auto text-white bg-purple-800">
+  <h1
+    class="font-medium text-2xl italic cursor-pointer py-8 px-10"
+    [routerLink]="['/']"
+  >
+    Tips for a happier life<span class="not-italic"> 😎</span>
   </h1>
-  <div class="flex ml-auto">
+  <div class="ml-auto block md:flex">
     <p
       *ngIf="auth.isAuthenticated; else notAuthenticated"
-      class="cursor-pointer py-8 px-10"
+      class="cursor-pointer py-6 px-10"
       [routerLink]="['/create-post']"
       [class.bg-gray-200]="router.url === '/create-post'"
       [class.bg-purple-800]="router.url !== '/create-post'"
@@ -15,7 +18,7 @@
     <p
       *ngIf="auth.isAuthenticated"
       (click)="logOut()"
-      class="cursor-pointer py-8 px-10"
+      class="cursor-pointer py-6 px-10"
     >
       Logout({{ auth.username }})
     </p>

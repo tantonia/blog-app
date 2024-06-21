@@ -1,5 +1,11 @@
-<app-header />
+<app-header></app-header>
 <div class="pb-16"></div>
+<div
+  *ngIf="errorMessage"
+  class="max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-xl bg-red-100 text-red-700 p-4 rounded-lg mb-4"
+>
+  <h1>{{ errorMessage }}</h1>
+</div>
 <div
   class="max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-lg rounded-lg overflow-hidden p-6"
 >

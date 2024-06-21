@@ -18,9 +18,11 @@ export class EditPostComponent implements OnInit{
 
   @ViewChild('editPost') editPost! : NgForm;
   selectedFile! : File;
+  fileSelected: boolean = false;  // Add this property
   postId: any;
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+    this.fileSelected = !!this.selectedFile;  // Update fileSelected status
     console.log(this.selectedFile.name);
   }
   ngOnInit(): void {
@@ -44,5 +46,6 @@ export class EditPostComponent implements OnInit{
     formData.append('file', this.selectedFile);
     this.post.editPost(this.postId, formData);
     this.editPost.reset();
+    this.fileSelected = false;
   }
 }

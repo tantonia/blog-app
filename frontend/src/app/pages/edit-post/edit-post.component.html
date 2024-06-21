@@ -40,10 +40,10 @@
       type="submit"
       class="bg-purple-700 disabled:bg-purple-500 rounded-lg p-5 w-60 text-white"
       [disabled]="editPost.invalid"
+      [title]="!fileSelected ? 'Please choose a file' : ''"
     >
       Submit
     </button>
   </form>
 </div>
-
 }
