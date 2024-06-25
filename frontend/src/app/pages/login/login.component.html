@@ -1,5 +1,11 @@
-<app-header />
+<app-header></app-header>
 <div class="pb-16"></div>
+<div
+  *ngIf="message"
+  class="alert alert-success flex flex-col w-[50%] m-auto mt-6 gap-6 bg-green-700 text-white p-4 mb-3 rounded items-center"
+>
+  {{ message }}
+</div>
 <div
   class="max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-xl bg-white shadow-lg rounded-lg overflow-hidden p-6"
 >

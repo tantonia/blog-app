@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SignupComponent {
   auth = inject(AuthService);
-  router = inject(Router)
+  router = inject(Router);
   @ViewChild('signup') signup!: NgForm;
   errorMessage: string | null = null;
 
@@ -24,7 +24,7 @@ export class SignupComponent {
       this.auth.signUpAuth(this.signup.value).subscribe({
         next: value => {
           console.log(value);
-          this.router.navigate(['./login']);
+          this.router.navigate(['./login'], { state: { message: 'Signup successful! Please login.' } });
           this.errorMessage = null; // Reset error message on successful signup
         },
         error: error => {
