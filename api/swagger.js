@@ -26,18 +26,112 @@ export const options = {
     tags: [
         {
             name: "Users",
-            description: "API for users in the system"
+            description: "API for Users in the system"
         },
         {
             name: "Posts",
             description: "API for Posts in the system"
         },
-        {
-            name: "Users and Posts",
-            description: "API for users in the system and their posts"
-        }
     ],
     paths: {
+        "/signup": {
+            post: {
+                tags: ["Users"],
+                summary: "User Signup",
+                description: "Register a new user",
+                requestBody: true,
+                content: {
+                    "application/json": {
+                        schema: {
+                            type: "object",
+                            properties: {
+                                username: { type: "string" },
+                                password: { type: "string" },
+                            },
+                            required: ["username", "password"]
+                        }
+                    }
+                },
+                responses: {
+                    200: {
+                        description: "User registered successfully",
+                    },
+                    400: {
+                        description: "Invalid input"
+                    },
+                    500: {
+                        description: "Server error"
+                    }
+                }
+            }
+        },
+        "/signin": {
+            post: {
+                tags: ["Users"],
+                summary: "User Signin",
+                description: "Authenticate and login a user",
+                requestBody: true,
+                content: {
+                    "application/json": {
+                        schema: {
+                            type: "object",
+                            properties: {
+                                username: { type: "string" },
+                                password: { type: "string" },
+                            },
+                            required: ["username", "password"]
+                        }
+                    }
+                },
+                responses: {
+                    200: {
+                        description: "User authenticated successfully",
+                    },
+                    400: {
+                        description: "Invalid credentials"
+                    },
+                    500: {
+                        description: "Server error"
+                    }
+                }
+            }
+        },
+        "/signout": {
+            get: {
+                tags: ["Users"],
+                summary: "User Signout",
+                description: "Signout the authenticated user",
+                responses: {
+                    200: {
+                        description: "User signed out successfully",
+                    },
+                    500: {
+                        description: "Server error"
+                    }
+                }
+            }
+        },
+        "/check" : {
+            get: {
+                tags: ["Users"],
+                summary: "Check Authenticated Route",
+                description: "Check if the user is authenticated",
+                security: [{
+                    "bearerAuth" : []
+                }],
+                responses: {
+                    200: {
+                        description: "User is authenticated"
+                    },
+                    401: {
+                        description: "Unauthorized"
+                    },
+                    500: {
+                        description: "Server error"
+                    }
+                }
+            }
+        },
         "/": {
             get: {
                 tags: ["Posts"],
