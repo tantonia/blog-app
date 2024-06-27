@@ -27,3 +27,7 @@ or
 ```shell
 ng serve
 ```
+
+#### 3) Swagger documentation
+
+Open Swagger Documentation: Open a web browser and go to 'http://localhost:4000/api-docs'.
